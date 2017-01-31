@@ -1,0 +1,75 @@
+<div class="container">
+  <header>
+    <h1>Viajala Test - Round Trip</h1>
+  </header>
+  <form (ngSubmit)="onSubmit()" #tripForm="ngForm">
+    <div class="form-group">
+      <label for="depart">Depart</label>
+      <select class="form-control" id="departCity"
+              required
+              [(ngModel)]="model.depart" name="depart"
+              #depart="ngModel">
+        <option *ngFor="let city of cities" [value]="city">{{city}}</option>
+      </select>
+      <div [hidden]="depart.valid || depart.pristine"
+            class="alert alert-danger">
+        A depart city is required 
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="arrive">Arrive</label>
+      <select class="form-control" id="arriveCity"
+              required
+              [(ngModel)]="model.arrive" name="arrive"
+              #arrive="ngModel">
+        <option *ngFor="let city of cities" [value]="city">{{city}}</option>
+      </select>
+      <div [hidden]="arrive.valid || arrive.pristine"
+            class="alert alert-danger">
+        An arrive city is required
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="name">Departure Date</label>
+      <input type="date" class="form-control" id="depart-date"
+              required
+              [min]="today"
+              [value]="model.departDate | date: 'yyyy-MM-dd'"
+              [(ngModel)]="model.departDate" name="departDate"
+              #departDate="ngModel">
+      <div [hidden]="departDate.valid || departDate.pristine"
+            class="alert alert-danger">
+        A departure date is required
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="name">Return Date</label>
+      <input type="date" class="form-control" id="arrive-date"
+              required
+              [min]="today"
+              [value]="model.returnDate"
+              [(ngModel)]="model.returnDate" name="returnDate"
+              #returnDate="ngModel">
+      <div [hidden]="returnDate.valid || returnDate.pristine"
+            class="alert alert-danger">
+        An returning date is required
+      </div>
+    </div>
+    <div class="form-group">
+        <label for="name">Passengers</label>
+        <div class="passenger-input">
+          <button type="button" (click)="addOrSubstractPassengers();"> - </button>
+          <span>{{model.passengers}}</span>
+          <button type="button" (click)="addOrSubstractPassengers(true);"> + </button>
+        </div>
+    </div>
+    <button type="submit" class="btn btn-default" [disabled]="!tripForm.form.valid">Submit</button>
+    <button type="button" class="btn btn-default" (click)="newTrip(); tripForm.reset()">New Trip</button>
+  </form>
+  <div [hidden]="!submitted">
+    <h3>
+      Your round trip {{model.depart}} - {{model.arrive}} was schedule to depart on {{model.departDate}}
+      and return on {{model.returnDate}} for {{model.passengers}} passengers.  
+    </h3>
+  </div>
+</div>

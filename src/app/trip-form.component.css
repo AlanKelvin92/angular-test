@@ -1,0 +1,28 @@
+header{
+    align-items: center;
+    background-color: #1363b2;
+    box-shadow: 0px 4px 12px -1px rgba(0,0,0,0.75);
+    color: white;
+    display: flex;  
+    height: 100px;
+    margin-bottom: 20px;
+    padding-left: 15px;
+}
+
+form{
+    margin-left: 20px;
+    width: 300px;
+}
+
+form .form-group{
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+form .passenger-input button{
+    background-color: white;
+    border: 1px solid;
+    border-radius: 10px;
+    font-size: 12px
+}
